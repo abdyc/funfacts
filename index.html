@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Fact Universe</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-white">
+
+    <div id="app" class="relative min-h-screen w-full flex flex-col items-center justify-center p-4">
+        <!-- Background Image Container -->
+        <div class="background-container absolute top-0 left-0 w-full h-full z-0">
+            <div id="background" class="background-image w-full h-full"></div>
+        </div>
+        <div class="overlay absolute top-0 left-0 w-full h-full z-10"></div>
+
+        <!-- Main Content -->
+        <div class="relative z-20 flex flex-col items-center justify-center text-center w-full max-w-3xl">
+
+            <div id="loader" class="loader my-8"></div>
+
+            <div id="fact-container" class="hidden">
+                <h2 id="fact-type" class="text-lg font-semibold text-blue-300 mb-2"></h2>
+                <h1 id="fact-title" class="text-3xl md:text-5xl font-bold mb-4"></h1>
+                <p id="fact-summary" class="text-lg md:text-xl mb-8"></p>
+                <div class="flex justify-center items-center gap-4">
+                    <a id="read-more" href="#" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors">Read on Wikipedia</a>
+                    <button id="share-btn" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                           <path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
+                           <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
+                        </svg>
+                        <span id="share-btn-text">Share</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="relative z-20 flex flex-col items-center gap-4 mt-8 w-full px-4">
+            <button id="random-btn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg w-full max-w-sm transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">Next Random Fact</button>
+            
+            <div class="text-center w-full max-w-lg">
+                <p class="mb-2 text-gray-400">Or find a fact by category:</p>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button data-category="science" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">Science</button>
+                    <button data-category="history" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">History</button>
+                    <button id="on-this-day-btn" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">On This Day</button>
+                    <button id="more-categories-btn" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">More...</button>
+                </div>
+                <div id="extra-categories" class="flex flex-wrap justify-center gap-3 mt-3 hidden">
+                    <button data-category="technology" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">Technology</button>
+                    <button data-category="animals" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">Animals</button>
+                    <button data-category="art" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">Art</button>
+                    <button data-category="geography" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">Geography</button>
+                    <button data-category="music" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">Music</button>
+                    <button data-category="film" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">Film</button>
+                    <button data-category="space" class="bg-white/20 hover:bg-white/30 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed">Space</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
+
