@@ -1,7 +1,7 @@
 Fun Fact Universe  
 A simple, mobile-friendly web application that displays fun facts and topics from Wikipedia with a beautiful, related background image. Explore random facts, browse by category, or see what happened "On This Day" in history. 
   
-[![View the Live Demo](https://acarv.com/projects/funfact.html)]
+[View Project](https://acarv.com/projects/funfact.html)
   
 Features  
 Endless Content: Get a random fact from over 6 million Wikipedia articles.  
